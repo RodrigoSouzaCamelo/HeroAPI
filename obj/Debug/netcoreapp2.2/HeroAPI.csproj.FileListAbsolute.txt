@@ -1,0 +1,14 @@
+/home/rodrigo/Workspace/c#/HeroAPI/bin/Debug/netcoreapp2.2/HeroAPI.deps.json
+/home/rodrigo/Workspace/c#/HeroAPI/bin/Debug/netcoreapp2.2/HeroAPI.runtimeconfig.json
+/home/rodrigo/Workspace/c#/HeroAPI/bin/Debug/netcoreapp2.2/HeroAPI.runtimeconfig.dev.json
+/home/rodrigo/Workspace/c#/HeroAPI/bin/Debug/netcoreapp2.2/HeroAPI.dll
+/home/rodrigo/Workspace/c#/HeroAPI/bin/Debug/netcoreapp2.2/HeroAPI.pdb
+/home/rodrigo/Workspace/c#/HeroAPI/obj/Debug/netcoreapp2.2/HeroAPI.csprojAssemblyReference.cache
+/home/rodrigo/Workspace/c#/HeroAPI/obj/Debug/netcoreapp2.2/HeroAPI.csproj.CoreCompileInputs.cache
+/home/rodrigo/Workspace/c#/HeroAPI/obj/Debug/netcoreapp2.2/HeroAPI.RazorAssemblyInfo.cache
+/home/rodrigo/Workspace/c#/HeroAPI/obj/Debug/netcoreapp2.2/HeroAPI.RazorAssemblyInfo.cs
+/home/rodrigo/Workspace/c#/HeroAPI/obj/Debug/netcoreapp2.2/HeroAPI.AssemblyInfoInputs.cache
+/home/rodrigo/Workspace/c#/HeroAPI/obj/Debug/netcoreapp2.2/HeroAPI.AssemblyInfo.cs
+/home/rodrigo/Workspace/c#/HeroAPI/obj/Debug/netcoreapp2.2/HeroAPI.RazorTargetAssemblyInfo.cache
+/home/rodrigo/Workspace/c#/HeroAPI/obj/Debug/netcoreapp2.2/HeroAPI.dll
+/home/rodrigo/Workspace/c#/HeroAPI/obj/Debug/netcoreapp2.2/HeroAPI.pdb
