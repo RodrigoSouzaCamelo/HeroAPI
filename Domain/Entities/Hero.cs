@@ -1,4 +1,4 @@
-namespace HeroAPI.Models
+namespace HeroAPI.Domain.Entities
 {
     public class Hero
     {

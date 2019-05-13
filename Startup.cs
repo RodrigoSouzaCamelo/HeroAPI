@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using HeroAPI.Models;
+using HeroAPI.Application.AppServices;
+using HeroAPI.Application.Interfaces;
+using HeroAPI.Data.Context;
+using HeroAPI.Data.Repositories;
+using HeroAPI.Domain.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -44,6 +48,11 @@ namespace HeroAPI
                         mySqlOptions.ServerVersion(new Version(10, 1, 38), ServerType.MySql); // replace with your Server Version and Type
                     }
             ));
+
+            #region 'Dependece Injection'
+            services.AddScoped<IHeroAppService, HeroAppService>();
+			services.AddScoped<IHeroRepository, HeroRepository>();
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
