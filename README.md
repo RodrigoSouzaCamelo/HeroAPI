@@ -60,3 +60,7 @@ To run the project run the command below.
 ``
 dotnet run
 ``
+
+## Author
+
+- Rodrigo Souza
