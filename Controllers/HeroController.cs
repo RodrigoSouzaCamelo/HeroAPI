@@ -26,7 +26,7 @@ namespace HeroAPI.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public IActionResult GetById(int id)
         {
             return Ok(_context.hero.Where(h => h.Id == id));
         }
@@ -40,8 +40,8 @@ namespace HeroAPI.Controllers
         }
 
         // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Hero value)
+        [HttpPut]
+        public void Put([FromBody] Hero value)
         {
             _context.Update(value);
             _context.SaveChanges();
