@@ -1,17 +1,18 @@
+using HeroAPI.Infra.Domain.Interfaces.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HeroAPI.Infra.WebApi.Interfaces
 {
-    public interface ICrudController<T> where T : class
+    public interface ICrudController<TEntity> where TEntity : IEntity
     {
         IActionResult Get();
 
-        ActionResult<T> Get(int id);
+        IActionResult Get(int id);
 
-        void Post([FromBody] T t);
+        void Post(TEntity t);
 
-        void Put([FromBody] T value);
+        void Put(TEntity value);
 
-        void Delete(T entity);
+        void Delete(TEntity entity);
     }
 }

@@ -1,3 +1,4 @@
+using HeroAPI.Infra.Domain.Interfaces.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -5,21 +6,21 @@ using System.Linq.Expressions;
 
 namespace HeroAPI.Infra.Data.Interfaces
 {
-    public interface IBaseRepository<T> where T : class
+    public interface IBaseRepository<TEntity> where TEntity : IEntity
     {
-        T Add(T t);
+        TEntity Add(TEntity t);
         int Count();
-        void Delete(T entity);
+        void Delete(TEntity entity);
         void Dispose();
-        T Find(Expression<Func<T, bool>> match);
-        ICollection<T> FindAll(Expression<Func<T, bool>> match);
-        IQueryable<T> FindBy(Expression<Func<T, bool>> predicate);
-        T Get(int id);
-        IQueryable<T> GetAll();
-        IQueryable<T> GetAllIncluding(params Expression<Func<T, object>>[] includeProperties);
+        TEntity Find(Expression<Func<TEntity, bool>> match);
+        ICollection<TEntity> FindAll(Expression<Func<TEntity, bool>> match);
+        IQueryable<TEntity> FindBy(Expression<Func<TEntity, bool>> predicate);
+        TEntity Get(int id);
+        IQueryable<TEntity> GetAll();
+        IQueryable<TEntity> GetAllIncluding(params Expression<Func<TEntity, object>>[] includeProperties);
         void Save();
-        T Update(T t);
-        T UpdateKey(T t, object key);
+        TEntity Update(TEntity t);
+        TEntity UpdateKey(TEntity t, object key);
 
     }
 }

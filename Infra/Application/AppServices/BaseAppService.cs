@@ -5,26 +5,27 @@ using System.Linq.Expressions;
 using HeroAPI.Application.Interfaces;
 using HeroAPI.Infra.Data.Interfaces;
 using HeroAPI.Infra.Application.Interfaces;
+using HeroAPI.Infra.Domain.Interfaces.Entities;
 
 namespace HeroAPI.Infra.Application.AppServices
 {
-    public abstract class BaseAppService<T> : IBaseAppService<T> where T : class
+    public class BaseAppService<TEntity> : IBaseAppService<TEntity> where TEntity : IEntity
     {
 
-        protected IBaseRepository<T> _repository;
+        protected IBaseRepository<TEntity> _repository;
 
-        public BaseAppService(IBaseRepository<T> repository)
+        public BaseAppService(IBaseRepository<TEntity> repository)
         {
             _repository = repository;
         }
 
-        public T Add(T t)
+        public TEntity Add(TEntity t)
         {
             _repository.Add(t);
             return t;
         }
 
-        public void Update(T t)
+        public void Update(TEntity t)
         {
             _repository.Update(t);
         }
@@ -34,32 +35,32 @@ namespace HeroAPI.Infra.Application.AppServices
             return _repository.Count();
         }
 
-        public void Delete(T entity)
+        public void Delete(TEntity entity)
         {
             _repository.Delete(entity);
         }
 
-        public T Find(Expression<Func<T, bool>> match)
+        public TEntity Find(Expression<Func<TEntity, bool>> match)
         {
             return _repository.Find(match);
         }
 
-        public ICollection<T> FindAll(Expression<Func<T, bool>> match)
+        public ICollection<TEntity> FindAll(Expression<Func<TEntity, bool>> match)
         {
             return _repository.FindAll(match);
         }
 
-        public IQueryable<T> FindBy(Expression<Func<T, bool>> predicate)
+        public IQueryable<TEntity> FindBy(Expression<Func<TEntity, bool>> predicate)
         {
             return _repository.FindBy(predicate);
         }
 
-        public T Get(int id)
+        public TEntity Get(int id)
         {
             return _repository.Get(id);
         }
 
-        public IQueryable<T> GetAll()
+        public IQueryable<TEntity> GetAll()
         {
             return _repository.GetAll();
         }

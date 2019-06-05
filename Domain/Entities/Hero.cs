@@ -1,6 +1,8 @@
+using HeroAPI.Infra.Domain.Interfaces.Entities;
+
 namespace HeroAPI.Domain.Entities
 {
-    public class Hero
+    public class Hero : IEntity
     {
         public int Id { get; set; }
         public string OwnName { get; set; }

@@ -1,23 +1,24 @@
 using HeroAPI.Application.AppServices;
 using HeroAPI.Application.Interfaces;
 using HeroAPI.Infra.Application.Interfaces;
+using HeroAPI.Infra.Domain.Interfaces.Entities;
 using HeroAPI.Infra.WebApi.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HeroAPI.Infra.WebApi.Controller
 {
-    public abstract class CrudController<T> : ControllerBase, ICrudController<T> where T : class
+    public class CrudController<TEntity> : ControllerBase, ICrudController<TEntity> where TEntity : IEntity
     {
-        protected readonly IBaseAppService<T> _appService;
+        protected readonly IBaseAppService<TEntity> _appService;
         
-        public CrudController(IBaseAppService<T> appService)
+        public CrudController(IBaseAppService<TEntity> appService)
         {
             _appService = appService;
         }
 
         // DELETE api/controller/5
         [HttpDelete("{id}")]
-        public void Delete(T entity)
+        public void Delete(TEntity entity)
         {
             _appService.Delete(entity);
         }
@@ -31,21 +32,21 @@ namespace HeroAPI.Infra.WebApi.Controller
 
         // GET api/controller/5
         [HttpGet("{id}")]
-        public ActionResult<T> Get(int id)
+        public IActionResult Get(int id)
         {
             return Ok(_appService.Get(id));
         }
 
         // POST api/controller
         [HttpPost]
-        public void Post([FromBody] T t)
+        public void Post([FromBody] TEntity t)
         {
             _appService.Add(t);
         }
 
         // PUT api/controller/5
         [HttpPut]
-        public void Put([FromBody] T entity)
+        public void Put([FromBody] TEntity entity)
         {
             _appService.Update(entity);
         }
