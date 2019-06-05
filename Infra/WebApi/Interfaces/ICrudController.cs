@@ -7,7 +7,7 @@ namespace HeroAPI.Infra.WebApi.Interfaces
     {
         IActionResult Get();
 
-        IActionResult Get(int id);
+        IActionResult GetById(int id);
 
         void Post(TEntity t);
 

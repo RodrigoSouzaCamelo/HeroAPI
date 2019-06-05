@@ -8,7 +8,7 @@ namespace HeroAPI.Application.AppServices
 {
     public class HeroAppService : BaseAppService<Hero>, IHeroAppService
     {
-        public HeroAppService(IBaseRepository<IHeroRepository> repository) : base(repository)
+        public HeroAppService(IHeroRepository repository) : base(repository)
         {
         }
     }

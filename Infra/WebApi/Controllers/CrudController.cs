@@ -32,7 +32,7 @@ namespace HeroAPI.Infra.WebApi.Controller
 
         // GET api/controller/5
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public IActionResult GetById(int id)
         {
             return Ok(_appService.Get(id));
         }

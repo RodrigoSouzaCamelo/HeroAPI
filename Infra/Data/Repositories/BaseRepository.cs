@@ -4,11 +4,12 @@ using System.Linq;
 using System.Linq.Expressions;
 using HeroAPI.Data.Context;
 using HeroAPI.Infra.Data.Interfaces;
+using HeroAPI.Infra.Domain.Interfaces.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace HeroAPI.Data.Repositories
 {
-    public abstract class BaseRepository<T> : IBaseRepository<T> where T : class
+    public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class, IEntity
     {
         protected HeroDbContext _context;
 
@@ -17,44 +18,44 @@ namespace HeroAPI.Data.Repositories
             _context = context;
         }
 
-        public IQueryable<T> GetAll()
+        public IQueryable<TEntity> GetAll()
         {
-            return _context.Set<T>();
+            return _context.Set<TEntity>();
         }
 
-        public virtual T Get(int id)
+        public virtual TEntity Get(int id)
         {
-            return _context.Set<T>().Find(id);
+            return _context.Set<TEntity>().Find(id);
         }
 
-        public virtual T Add(T t)
+        public virtual TEntity Add(TEntity t)
         {
-            _context.Set<T>().Add(t);
+            _context.Set<TEntity>().Add(t);
             _context.SaveChanges();
             return t;
         }
 
-        public virtual T Find(Expression<Func<T, bool>> match)
+        public virtual TEntity Find(Expression<Func<TEntity, bool>> match)
         {
-            return _context.Set<T>().SingleOrDefault(match);
+            return _context.Set<TEntity>().SingleOrDefault(match);
         }
 
-        public ICollection<T> FindAll(Expression<Func<T, bool>> match)
+        public ICollection<TEntity> FindAll(Expression<Func<TEntity, bool>> match)
         {
-            return _context.Set<T>().Where(match).ToList();
+            return _context.Set<TEntity>().Where(match).ToList();
         }
 
-        public virtual void Delete(T entity)
+        public virtual void Delete(TEntity entity)
         {
-            _context.Set<T>().Remove(entity);
+            _context.Set<TEntity>().Remove(entity);
             _context.SaveChanges();
         }
 
-        public virtual T Update(T t)
+        public virtual TEntity Update(TEntity t)
         {
             try
             {
-                _context.Set<T>().Update(t);
+                _context.Set<TEntity>().Update(t);
                 _context.SaveChanges();
             }
             catch (Exception ex)
@@ -66,7 +67,7 @@ namespace HeroAPI.Data.Repositories
 
         public int Count()
         {
-            return _context.Set<T>().Count();
+            return _context.Set<TEntity>().Count();
         }
 
         public virtual void Save()
@@ -75,20 +76,20 @@ namespace HeroAPI.Data.Repositories
             _context.SaveChanges();
         }
 
-        public virtual IQueryable<T> FindBy(Expression<Func<T, bool>> predicate)
+        public virtual IQueryable<TEntity> FindBy(Expression<Func<TEntity, bool>> predicate)
         {
-            IQueryable<T> query = _context.Set<T>().Where(predicate);
+            IQueryable<TEntity> query = _context.Set<TEntity>().Where(predicate);
             return query;
         }
 
-        public IQueryable<T> GetAllIncluding(params Expression<Func<T, object>>[] includeProperties)
+        public IQueryable<TEntity> GetAllIncluding(params Expression<Func<TEntity, object>>[] includeProperties)
         {
 
-            IQueryable<T> queryable = GetAll();
-            foreach (Expression<Func<T, object>> includeProperty in includeProperties)
+            IQueryable<TEntity> queryable = GetAll();
+            foreach (Expression<Func<TEntity, object>> includeProperty in includeProperties)
             {
 
-                queryable = queryable.Include<T, object>(includeProperty);
+                queryable = queryable.Include<TEntity, object>(includeProperty);
             }
 
             return queryable;
@@ -113,11 +114,11 @@ namespace HeroAPI.Data.Repositories
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-        public virtual T UpdateKey(T t, object key)
+        public virtual TEntity UpdateKey(TEntity t, object key)
         {
             if (t == null)
                 return null;
-            T exist = _context.Set<T>().Find(key);
+            TEntity exist = _context.Set<TEntity>().Find(key);
 
             if (exist != null)
             {

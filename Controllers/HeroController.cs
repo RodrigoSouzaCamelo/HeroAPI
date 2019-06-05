@@ -14,7 +14,7 @@ namespace HeroAPI.Controllers
     [ApiController]
     public class HeroController : CrudController<Hero>
     {
-        public HeroController(IBaseAppService<IHeroAppService> appService) : base(appService)
+        public HeroController(IHeroAppService appService) : base(appService)
         {
         }
     }
