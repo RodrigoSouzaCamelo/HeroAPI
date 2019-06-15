@@ -63,7 +63,4 @@ dotnet run
 
 ## Author
 
-- Rodrigo Souza
-- Thaynara dos Santos
-- Felipe Melo
-- João Paulo Felipe Sobrinho de Souza
+- Rodrigo Souza Camelo
