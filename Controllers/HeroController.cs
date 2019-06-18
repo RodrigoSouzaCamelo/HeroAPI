@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using HeroAPI.Models;
+﻿using System.Linq;
+using HeroAPI.Data.Contexts;
+using HeroAPI.Data.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HeroAPI.Controllers

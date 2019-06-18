@@ -1,6 +1,7 @@
+using HeroAPI.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace HeroAPI.Models
+namespace HeroAPI.Data.Contexts
 {
     public class HeroDbContext : DbContext
     {

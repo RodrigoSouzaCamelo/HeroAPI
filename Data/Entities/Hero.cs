@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace HeroAPI.Models
+namespace HeroAPI.Data.Entities
 {
     [Table("Heroes", Schema = "HeroAPI")] 
     public class Hero
