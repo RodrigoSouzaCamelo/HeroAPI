@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HeroAPI.Application.Interfaces;
+using HeroAPI.Application.ViewModels;
 using HeroAPI.Domain.Entities;
 using HeroAPI.Infra.Application.Interfaces;
 using HeroAPI.Infra.WebApi.Controller;
@@ -12,7 +13,7 @@ namespace HeroAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class HeroController : CrudController<Hero>
+    public class HeroController : CrudController<Hero, HeroViewModel>
     {
         public HeroController(IHeroAppService appService) : base(appService)
         {

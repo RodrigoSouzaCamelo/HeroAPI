@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using HeroAPI.Application.AppServices;
 using HeroAPI.Application.Interfaces;
+using HeroAPI.Application.Mappings;
 using HeroAPI.Data.Context;
 using HeroAPI.Data.Repositories;
 using HeroAPI.Domain.Interfaces;
@@ -34,6 +36,14 @@ namespace HeroAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new HeroMapping());
+            });
+
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
+            
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
             {

@@ -6,16 +6,18 @@ using System.Linq.Expressions;
 
 namespace HeroAPI.Infra.Application.Interfaces
 {
-    public interface IBaseAppService<TEntity> where TEntity : IEntity
+    public interface IBaseAppService<TEntity, TViewModel> 
+        where TEntity : IEntity
+        where TViewModel : IViewModel
     {
-        TEntity Add(TEntity t);
-        void Update(TEntity t);
+        TViewModel Add(TViewModel t);
+        void Update(TViewModel t);
         int Count();
-        void Delete(TEntity entity);
-        TEntity Find(Expression<Func<TEntity, bool>> match);
-        ICollection<TEntity> FindAll(Expression<Func<TEntity, bool>> match);
-        IQueryable<TEntity> FindBy(Expression<Func<TEntity, bool>> predicate);
-        TEntity Get(int id);
-        IQueryable<TEntity> GetAll();
+        void Delete(TViewModel entity);
+        TViewModel Find(Expression<Func<TViewModel, bool>> match);
+        ICollection<TViewModel> FindAll(Expression<Func<TViewModel, bool>> match);
+        IQueryable<TViewModel> FindBy(Expression<Func<TViewModel, bool>> predicate);
+        TViewModel Get(int id);
+        IEnumerable<TViewModel> GetAll();
     }
 }

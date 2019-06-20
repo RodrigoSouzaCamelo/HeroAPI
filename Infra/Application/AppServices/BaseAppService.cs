@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using AutoMapper;
 using HeroAPI.Application.Interfaces;
 using HeroAPI.Infra.Data.Interfaces;
 using HeroAPI.Infra.Application.Interfaces;
@@ -9,25 +10,31 @@ using HeroAPI.Infra.Domain.Interfaces.Entities;
 
 namespace HeroAPI.Infra.Application.AppServices
 {
-    public class BaseAppService<TEntity> : IBaseAppService<TEntity> where TEntity : IEntity
+    public class BaseAppService<TEntity, TViewModel> : IBaseAppService<TEntity, TViewModel> 
+        where TEntity : IEntity
+        where TViewModel : IViewModel
     {
 
         protected IBaseRepository<TEntity> _repository;
+        protected IMapper _mapper;
 
-        public BaseAppService(IBaseRepository<TEntity> repository)
+        public BaseAppService(IMapper mapper, IBaseRepository<TEntity> repository)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
-        public TEntity Add(TEntity t)
+        public TViewModel Add(TViewModel viewModel)
         {
-            _repository.Add(t);
-            return t;
+            var entity = _mapper.Map<TEntity>(viewModel);
+            _repository.Add(entity);
+            return viewModel;
         }
 
-        public void Update(TEntity t)
+        public void Update(TViewModel viewModel)
         {
-            _repository.Update(t);
+            var entity = _mapper.Map<TEntity>(viewModel);
+            _repository.Update(entity);
         }
 
         public int Count()
@@ -35,34 +42,58 @@ namespace HeroAPI.Infra.Application.AppServices
             return _repository.Count();
         }
 
-        public void Delete(TEntity entity)
+        public void Delete(TViewModel viewModel)
         {
+            var entity = _mapper.Map<TEntity>(viewModel);
             _repository.Delete(entity);
         }
 
-        public TEntity Find(Expression<Func<TEntity, bool>> match)
+        public TViewModel Find(Expression<Func<TViewModel, bool>> expressionVM)
         {
-            return _repository.Find(match);
+            var param = Expression.Parameter(typeof(TEntity));
+            var body = expressionVM.Body;
+            
+            Expression<Func<TEntity, bool>> lambda = Expression.Lambda<Func<TEntity, bool>>(body, param);
+            TEntity entity = _repository.Find(lambda);
+            TViewModel viewModel = _mapper.Map<TViewModel>(entity);
+
+            return viewModel;
         }
 
-        public ICollection<TEntity> FindAll(Expression<Func<TEntity, bool>> match)
+        public ICollection<TViewModel> FindAll(Expression<Func<TViewModel, bool>> expressionVM)
         {
-            return _repository.FindAll(match);
+            var param = Expression.Parameter(typeof(TEntity));
+            var body = expressionVM.Body;
+            
+            Expression<Func<TEntity, bool>> lambda = Expression.Lambda<Func<TEntity, bool>>(body, param);
+            ICollection<TEntity> entities = _repository.FindAll(lambda);
+            ICollection<TViewModel> viewModels = _mapper.Map<ICollection<TViewModel>>(entities);
+
+            return viewModels;
         }
 
-        public IQueryable<TEntity> FindBy(Expression<Func<TEntity, bool>> predicate)
+        public IQueryable<TViewModel> FindBy(Expression<Func<TViewModel, bool>> expressionVM)
         {
-            return _repository.FindBy(predicate);
+            var param = Expression.Parameter(typeof(TEntity));
+            var body = expressionVM.Body;
+            
+            Expression<Func<TEntity, bool>> lambda = Expression.Lambda<Func<TEntity, bool>>(body, param);
+            IQueryable<TEntity> entities = _repository.FindBy(lambda);
+            IQueryable<TViewModel> viewModels = _mapper.Map<IQueryable<TViewModel>>(entities);
+
+            return viewModels;
         }
 
-        public TEntity Get(int id)
+        public TViewModel Get(int id)
         {
-            return _repository.Get(id);
+            var entity = _repository.Get(id);
+            return _mapper.Map<TViewModel>(entity);
         }
 
-        public IQueryable<TEntity> GetAll()
+        public IEnumerable<TViewModel> GetAll()
         {
-            return _repository.GetAll();
+            var entities = _repository.GetAll();
+            return _mapper.Map<IEnumerable<TEntity>, IEnumerable<TViewModel>>(entities.AsEnumerable());
         }
     }
 }

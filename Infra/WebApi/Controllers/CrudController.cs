@@ -7,18 +7,20 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HeroAPI.Infra.WebApi.Controller
 {
-    public class CrudController<TEntity> : ControllerBase, ICrudController<TEntity> where TEntity : IEntity
+    public class CrudController<TEntity, TViewModel> : ControllerBase, ICrudController<TEntity, TViewModel> 
+        where TEntity : IEntity
+        where TViewModel : IViewModel
     {
-        protected readonly IBaseAppService<TEntity> _appService;
+        protected readonly IBaseAppService<TEntity, TViewModel> _appService;
         
-        public CrudController(IBaseAppService<TEntity> appService)
+        public CrudController(IBaseAppService<TEntity, TViewModel> appService)
         {
             _appService = appService;
         }
 
         // DELETE api/controller/5
         [HttpDelete("{id}")]
-        public void Delete(TEntity entity)
+        public void Delete(TViewModel entity)
         {
             _appService.Delete(entity);
         }
@@ -39,14 +41,14 @@ namespace HeroAPI.Infra.WebApi.Controller
 
         // POST api/controller
         [HttpPost]
-        public void Post([FromBody] TEntity t)
+        public void Post([FromBody] TViewModel t)
         {
             _appService.Add(t);
         }
 
         // PUT api/controller/5
         [HttpPut]
-        public void Put([FromBody] TEntity entity)
+        public void Put([FromBody] TViewModel entity)
         {
             _appService.Update(entity);
         }
