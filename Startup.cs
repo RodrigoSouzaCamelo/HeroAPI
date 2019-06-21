@@ -2,6 +2,8 @@
 using AutoMapper;
 using HeroAPI.Data.Contexts;
 using HeroAPI.Data.Mappings;
+using HeroAPI.Services;
+using HeroAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -35,6 +37,10 @@ namespace HeroAPI
 
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
+
+            #region 'Injection Dependency'
+                services.AddScoped<IHeroService, HeroService>();
+            #endregion
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>

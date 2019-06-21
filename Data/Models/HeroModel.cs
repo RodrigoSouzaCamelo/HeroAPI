@@ -1,8 +1,9 @@
+using HeroAPI.Data.Models.Interfaces;
+
 namespace HeroAPI.Data.Models
 {
-    public class HeroModel
+    public class HeroModel : Model<int>, IHeroModel
     {
-        public int Id { get; set; }
         public string OwnName { get; set; }
         public string HeroName { get; set; }
         public string Gender { get; set; }

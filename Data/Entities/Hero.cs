@@ -1,14 +1,12 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using HeroAPI.Data.Entities.Interfaces;
 
 namespace HeroAPI.Data.Entities
 {
     [Table("Heroes", Schema = "HeroAPI")] 
-    public class Hero
+    public class Hero : Entity<int>, IHero
     {
-        [Key]  
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)] 
-        public int Id { get; set; }
         
         [Required]  
         [Column(TypeName = "varchar(200)")]  
