@@ -1,6 +1,4 @@
-﻿using System.Linq;
-using HeroAPI.Data.Contexts;
-using HeroAPI.Data.Entities;
+﻿using HeroAPI.Data.Entities;
 using HeroAPI.Data.Models;
 using HeroAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -11,7 +9,7 @@ namespace HeroAPI.Controllers
     [ApiController]
     public class HeroController : CrudController<Hero, HeroModel, int>
     {
-        public HeroController(IService<Hero, HeroModel, int> service) : base(service)
+        public HeroController(IHeroService service) : base(service)
         {
         }
     }

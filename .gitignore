@@ -1,8 +1,10 @@
 bin/
 .idea/
 .vscode/
+.vs
 obj/
 
 *.dll
 *.pdb
 *.cache
+*.user
