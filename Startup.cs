@@ -50,7 +50,7 @@ namespace HeroAPI
 
             // other service configurations go here
             services.AddDbContextPool<HeroDbContext>(
-                options => options.UseMySql("Server=localhost;Database=HeroAPI;User=admin;Password=admin;", // replace with your Connection String
+                options => options.UseMySql("Server=localhost;Database=HeroAPI;User=root;Password=qwe123*;", // replace with your Connection String
                     mySqlOptions =>
                     {
                         mySqlOptions.ServerVersion(new Version(10, 1, 38), ServerType.MySql); // replace with your Server Version and Type

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace HeroAPI.Data.Entities
 {
     public class Entity<TId> : IEntity<TId>
-    where TId : struct
+    //where TId : struct
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

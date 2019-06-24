@@ -10,7 +10,7 @@ namespace HeroAPI.Services{
     public class Service<TEntity, TModel, TId> : IService<TEntity, TModel, TId>
     where TEntity : class, IEntity<TId>
     where TModel : IViewModel<TId>
-    where TId : struct
+    //where TId : struct
     {
         public readonly DbContext _dbContext;
         public readonly IMapper _mapper;
