@@ -22,7 +22,7 @@ git clone https://github.com/RodrigoSouzaCamelo/HeroAPI.git
 When the download is complete, enter the HeroAPI/ folder and run the following command to add an initial migration.
 
 ``
-dotnet ef migrations add InitialCreate
+dotnet ef Data/Migrations add InitialCreate
 ``
 
 Three files are added to your project under the Migrations directory:
