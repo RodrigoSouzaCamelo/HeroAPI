@@ -15,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Layers\Application\Layers.Application.csproj" />
     <ProjectReference Include="..\..\Layers\WebApi\Layers.WebApi.csproj" />
+    <ProjectReference Include="..\..\Contexts\Hero\HeroAPI.Hero.Application\HeroAPI.Hero.Application.csproj" />
   </ItemGroup>
 
 </Project>

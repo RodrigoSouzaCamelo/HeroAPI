@@ -1,8 +1,8 @@
 using Layers.Domain.Interfaces.Entities;
 
-namespace HeroAPI.Domain.Entities
+namespace HeroAPI.Hero.Domain.Entities
 {
-    public class Hero : IEntity
+    public class HeroEntity : IEntity
     {
         public int Id { get; set; }
         public string OwnName { get; set; }

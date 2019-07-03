@@ -1,10 +1,11 @@
-using HeroAPI.Domain.Entities;
-using HeroAPI.Domain.Interfaces;
+
+using HeroAPI.Hero.Domain.Entities;
+using HeroAPI.Hero.Domain.Interfaces;
 using HeroAPI.Infra;
 using Layers.Data.Repositories;
 
 namespace HeroAPI.Data.Repositories{
-    public class HeroRepository : BaseRepository<Hero>, IHeroRepository
+    public class HeroRepository : BaseRepository<HeroEntity>, IHeroRepository
     {
         public HeroRepository(HeroAPIContext context) : base(context)
         {

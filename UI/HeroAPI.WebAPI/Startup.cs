@@ -3,7 +3,7 @@ using HeroAPI.Application.AppServices;
 using HeroAPI.Application.Interfaces;
 using HeroAPI.Application.Mappings;
 using HeroAPI.Data.Repositories;
-using HeroAPI.Domain.Interfaces;
+using HeroAPI.Hero.Domain.Interfaces;
 using HeroAPI.Infra;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -41,7 +41,7 @@ namespace HeroAPI
                 c.SwaggerDoc("v1", new Info { Title = "HeroAPI", Version = "v1" });
             });
 
-            services.AddContext();
+            services.AddHeroContext();
 
             #region 'Dependece Injection'
             services.AddScoped<IHeroAppService, HeroAppService>();

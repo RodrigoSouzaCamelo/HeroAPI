@@ -1,10 +1,10 @@
 using HeroAPI.Application.ViewModels;
-using HeroAPI.Domain.Entities;
+using HeroAPI.Hero.Domain.Entities;
 using Layers.Application.Mappings;
 
 namespace HeroAPI.Application.Mappings
 {
-    public class HeroMapping : MappingProfile<Hero, HeroViewModel>
+    public class HeroMapping : MappingProfile<HeroEntity, HeroViewModel>
     {
     }
 }
