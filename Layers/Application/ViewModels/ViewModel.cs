@@ -1,6 +1,6 @@
-using HeroAPI.Infra.Application.Interfaces;
+using Layers.Application.Interfaces;
 
-namespace HeroAPI.Infra.Application.ViewModels
+namespace Layers.Application.ViewModels
 {
     public class ViewModel : IViewModel
     {

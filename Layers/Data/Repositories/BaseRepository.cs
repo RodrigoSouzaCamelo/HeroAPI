@@ -2,18 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using HeroAPI.Data.Context;
-using HeroAPI.Infra.Data.Interfaces;
-using HeroAPI.Infra.Domain.Interfaces.Entities;
+using Layers.Data.Interfaces;
+using Layers.Domain.Interfaces.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace HeroAPI.Data.Repositories
+namespace Layers.Data.Repositories
 {
     public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class, IEntity
     {
-        protected HeroDbContext _context;
+        protected DbContext _context;
 
-        public BaseRepository(HeroDbContext context)
+        public BaseRepository(DbContext context)
         {
             _context = context;
         }

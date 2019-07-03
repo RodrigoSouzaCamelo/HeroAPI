@@ -1,4 +1,4 @@
-using HeroAPI.Infra.Domain.Interfaces.Entities;
+using Layers.Domain.Interfaces.Entities;
 
 namespace HeroAPI.Domain.Entities
 {

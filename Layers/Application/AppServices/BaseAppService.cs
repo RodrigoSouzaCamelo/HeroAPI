@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using AutoMapper;
-using HeroAPI.Application.Interfaces;
-using HeroAPI.Infra.Data.Interfaces;
-using HeroAPI.Infra.Application.Interfaces;
-using HeroAPI.Infra.Domain.Interfaces.Entities;
+using Layers.Application.Interfaces;
+using Layers.Data.Interfaces;
+using Layers.Domain.Interfaces.Entities;
 
-namespace HeroAPI.Infra.Application.AppServices
+namespace Layers.Application.AppServices
 {
     public class BaseAppService<TEntity, TViewModel> : IBaseAppService<TEntity, TViewModel> 
         where TEntity : IEntity

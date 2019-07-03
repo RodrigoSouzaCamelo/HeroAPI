@@ -1,10 +1,10 @@
-using HeroAPI.Infra.Domain.Interfaces.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using Layers.Domain.Interfaces.Entities;
 
-namespace HeroAPI.Infra.Application.Interfaces
+namespace Layers.Application.Interfaces
 {
     public interface IBaseAppService<TEntity, TViewModel> 
         where TEntity : IEntity

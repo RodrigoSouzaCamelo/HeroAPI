@@ -1,11 +1,9 @@
 using HeroAPI.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace HeroAPI.Data.Context
-{
-    public class HeroDbContext : DbContext
-    {
-        public HeroDbContext(DbContextOptions<HeroDbContext> option) : base(option) { }
+namespace HeroAPI.Infra{
+    public class HeroAPIContext : DbContext{
+        public HeroAPIContext(DbContextOptions<HeroAPIContext> option) : base(option) { }
 
         public DbSet<Hero> hero { get; set; }
 

@@ -1,5 +1,5 @@
 using HeroAPI.Application.Interfaces;
-using HeroAPI.Infra.Application.ViewModels;
+using Layers.Application.ViewModels;
 
 namespace HeroAPI.Application.ViewModels
 {

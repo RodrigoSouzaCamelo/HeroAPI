@@ -1,10 +1,10 @@
-using HeroAPI.Infra.Domain.Interfaces.Entities;
+using Layers.Domain.Interfaces.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace HeroAPI.Infra.Data.Interfaces
+namespace Layers.Data.Interfaces
 {
     public interface IBaseRepository<TEntity> where TEntity : IEntity
     {

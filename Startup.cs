@@ -1,24 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using HeroAPI.Application.AppServices;
 using HeroAPI.Application.Interfaces;
 using HeroAPI.Application.Mappings;
-using HeroAPI.Data.Context;
 using HeroAPI.Data.Repositories;
 using HeroAPI.Domain.Interfaces;
+using HeroAPI.Infra;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace HeroAPI
@@ -50,14 +41,7 @@ namespace HeroAPI
                 c.SwaggerDoc("v1", new Info { Title = "HeroAPI", Version = "v1" });
             });
 
-            // other service configurations go here
-            services.AddDbContextPool<HeroDbContext>( // replace "YourDbContext" with the class name of your DbContext
-                options => options.UseMySql("Server=localhost;Database=HeroAPI;User=admin;Password=admin;", // replace with your Connection String
-                    mySqlOptions =>
-                    {
-                        mySqlOptions.ServerVersion(new Version(10, 1, 38), ServerType.MySql); // replace with your Server Version and Type
-                    }
-            ));
+            services.AddContext();
 
             #region 'Dependece Injection'
             services.AddScoped<IHeroAppService, HeroAppService>();

@@ -1,8 +1,8 @@
-using HeroAPI.Infra.Application.Interfaces;
-using HeroAPI.Infra.Domain.Interfaces.Entities;
+using Layers.Application.Interfaces;
+using Layers.Domain.Interfaces.Entities;
 using Microsoft.AspNetCore.Mvc;
 
-namespace HeroAPI.Infra.WebApi.Interfaces
+namespace Layers.WebApi.Interfaces
 {
     public interface ICrudController<TEntity, TViewModel>
         where TEntity : IEntity

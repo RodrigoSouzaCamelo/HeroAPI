@@ -1,4 +1,4 @@
-using HeroAPI.Infra.Application.Interfaces;
+using Layers.Application.Interfaces;
 
 namespace HeroAPI.Application.Interfaces
 {

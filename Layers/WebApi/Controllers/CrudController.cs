@@ -1,11 +1,9 @@
-using HeroAPI.Application.AppServices;
-using HeroAPI.Application.Interfaces;
-using HeroAPI.Infra.Application.Interfaces;
-using HeroAPI.Infra.Domain.Interfaces.Entities;
-using HeroAPI.Infra.WebApi.Interfaces;
+using Layers.Application.Interfaces;
+using Layers.Domain.Interfaces.Entities;
+using Layers.WebApi.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-namespace HeroAPI.Infra.WebApi.Controller
+namespace Layers.WebApi.Controller
 {
     public class CrudController<TEntity, TViewModel> : ControllerBase, ICrudController<TEntity, TViewModel> 
         where TEntity : IEntity

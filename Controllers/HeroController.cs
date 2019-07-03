@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using HeroAPI.Application.Interfaces;
+﻿using HeroAPI.Application.Interfaces;
 using HeroAPI.Application.ViewModels;
 using HeroAPI.Domain.Entities;
-using HeroAPI.Infra.Application.Interfaces;
-using HeroAPI.Infra.WebApi.Controller;
+using Layers.WebApi.Controller;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HeroAPI.Controllers

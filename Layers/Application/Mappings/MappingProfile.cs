@@ -1,8 +1,8 @@
 using AutoMapper;
-using HeroAPI.Infra.Application.Interfaces;
-using HeroAPI.Infra.Domain.Interfaces.Entities;
+using Layers.Application.Interfaces;
+using Layers.Domain.Interfaces.Entities;
 
-namespace HeroAPI.Infra.Application.Mappings
+namespace Layers.Application.Mappings
 {
     public class MappingProfile<TEntity, TViewModel> : Profile
     where TEntity : IEntity
