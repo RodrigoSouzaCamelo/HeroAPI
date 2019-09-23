@@ -2,7 +2,7 @@ using Layers.Domain.Interfaces.Entities;
 
 namespace HeroAPI.Hero.Domain.Entities
 {
-    public class HeroEntity : IEntity
+    public class HeroEntity : IEntity<int>
     {
         public int Id { get; set; }
         public string OwnName { get; set; }

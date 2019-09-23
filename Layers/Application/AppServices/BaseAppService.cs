@@ -9,18 +9,30 @@ using Layers.Domain.Interfaces.Entities;
 
 namespace Layers.Application.AppServices
 {
-    public class BaseAppService<TEntity, TViewModel> : IBaseAppService<TEntity, TViewModel> 
-        where TEntity : IEntity
-        where TViewModel : IViewModel
+    public class BaseAppService<TViewModel, TEntity, TId> : IBaseAppService<TViewModel, TEntity, TId>
+        where TViewModel : IViewModel<TId>
+        where TEntity : IEntity<TId>
+        where TId : struct
     {
-
-        protected IBaseRepository<TEntity> _repository;
+        protected IBaseRepository<TEntity, TId> _repository;
         protected IMapper _mapper;
 
-        public BaseAppService(IMapper mapper, IBaseRepository<TEntity> repository)
+        public BaseAppService(IMapper mapper, IBaseRepository<TEntity, TId> repository)
         {
             _repository = repository;
             _mapper = mapper;
+        }
+
+        public TViewModel GetAll(int id)
+        {
+            var entity = _repository.GetById(id);
+            return _mapper.Map<TViewModel>(entity);
+        }
+
+        public IEnumerable<TViewModel> GetAll()
+        {
+            var entities = _repository.GetAll();
+            return _mapper.Map<IEnumerable<TEntity>, IEnumerable<TViewModel>>(entities.AsEnumerable());
         }
 
         public TViewModel Add(TViewModel viewModel)
@@ -36,15 +48,12 @@ namespace Layers.Application.AppServices
             _repository.Update(entity);
         }
 
-        public int Count()
-        {
-            return _repository.Count();
-        }
+        public int Count() => _repository.Count();
 
-        public void Delete(TViewModel viewModel)
+        public void Remove(TViewModel viewModel)
         {
             var entity = _mapper.Map<TEntity>(viewModel);
-            _repository.Delete(entity);
+            _repository.Remove(entity);
         }
 
         public TViewModel Find(Expression<Func<TViewModel, bool>> expressionVM)
@@ -81,18 +90,6 @@ namespace Layers.Application.AppServices
             IQueryable<TViewModel> viewModels = _mapper.Map<IQueryable<TViewModel>>(entities);
 
             return viewModels;
-        }
-
-        public TViewModel Get(int id)
-        {
-            var entity = _repository.Get(id);
-            return _mapper.Map<TViewModel>(entity);
-        }
-
-        public IEnumerable<TViewModel> GetAll()
-        {
-            var entities = _repository.GetAll();
-            return _mapper.Map<IEnumerable<TEntity>, IEnumerable<TViewModel>>(entities.AsEnumerable());
         }
     }
 }

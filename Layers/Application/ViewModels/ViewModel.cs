@@ -2,8 +2,9 @@ using Layers.Application.Interfaces;
 
 namespace Layers.Application.ViewModels
 {
-    public class ViewModel : IViewModel
+    public class ViewModel<TId> : IViewModel<TId>
+        where TId : struct
     {
-        public int Id { get; set; }
+        public TId Id { get; set; }
     }
 }

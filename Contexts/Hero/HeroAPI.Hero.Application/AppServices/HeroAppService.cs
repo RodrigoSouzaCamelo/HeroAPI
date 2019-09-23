@@ -7,7 +7,7 @@ using Layers.Application.AppServices;
 
 namespace HeroAPI.Application.AppServices
 {
-    public class HeroAppService : BaseAppService<HeroEntity, HeroViewModel>, IHeroAppService
+    public class HeroAppService : BaseAppService<HeroViewModel, HeroEntity, int>, IHeroAppService
     {
         public HeroAppService(IMapper mapper, IHeroRepository repository) : base(mapper, repository)
         {

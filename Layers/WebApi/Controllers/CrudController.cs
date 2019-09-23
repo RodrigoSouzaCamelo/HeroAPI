@@ -5,50 +5,34 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Layers.WebApi.Controller
 {
-    public class CrudController<TEntity, TViewModel> : ControllerBase, ICrudController<TEntity, TViewModel> 
-        where TEntity : IEntity
-        where TViewModel : IViewModel
+    public class CrudController<TViewModel, TEntity, TId> : ControllerBase, ICrudController<TViewModel, TEntity, TId> 
+        where TEntity : IEntity<TId>
+        where TViewModel : IViewModel<TId>
+        where TId : struct
     {
-        protected readonly IBaseAppService<TEntity, TViewModel> _appService;
+        protected readonly IBaseAppService<TViewModel, TEntity, TId> _appService;
         
-        public CrudController(IBaseAppService<TEntity, TViewModel> appService)
-        {
-            _appService = appService;
-        }
-
-        // DELETE api/controller/5
-        [HttpDelete("{id}")]
-        public void Delete(TViewModel entity)
-        {
-            _appService.Delete(entity);
-        }
+        public CrudController(IBaseAppService<TViewModel, TEntity, TId> appService)
+            => _appService = appService;
 
         // GET api/controller
         [HttpGet]
-        public IActionResult Get()
-        {
-            return Ok(_appService.GetAll());
-        }
+        public IActionResult GetAll() => Ok(_appService.GetAll());
 
         // GET api/controller/5
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
-        {
-            return Ok(_appService.Get(id));
-        }
+        public IActionResult GetById(int id) => Ok(_appService.GetAll(id));
 
         // POST api/controller
-        [HttpPost]
-        public void Post([FromBody] TViewModel t)
-        {
-            _appService.Add(t);
-        }
+        [HttpPost("Add")]
+        public void Add([FromBody] TViewModel viewModel) => _appService.Add(viewModel);
 
         // PUT api/controller/5
-        [HttpPut]
-        public void Put([FromBody] TViewModel entity)
-        {
-            _appService.Update(entity);
-        }
+        [HttpPut("Update")]
+        public void Update([FromBody] TViewModel viewModel) => _appService.Update(viewModel);
+
+        // DELETE api/controller/5
+        [HttpDelete("Remove")]
+        public void Remove([FromBody]TViewModel entity) => _appService.Remove(entity);
     }
 }

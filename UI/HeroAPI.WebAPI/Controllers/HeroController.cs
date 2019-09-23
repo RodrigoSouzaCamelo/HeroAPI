@@ -8,9 +8,10 @@ namespace HeroAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class HeroController : CrudController<HeroEntity, HeroViewModel>
+    public class HeroController : CrudController<HeroViewModel, HeroEntity, int>
     {
-        public HeroController(IHeroAppService appService) : base(appService)
+        public HeroController(IHeroAppService appService) 
+            :base(appService)
         {
         }
     }

@@ -4,14 +4,13 @@ using Layers.Domain.Interfaces.Entities;
 
 namespace Layers.Application.Mappings
 {
-    public class MappingProfile<TEntity, TViewModel> : Profile
-    where TEntity : IEntity
-    where TViewModel : IViewModel
+    public class MappingProfile<TViewModel, TEntity, TId> : Profile
+        where TViewModel : IViewModel<TId>
+        where TEntity : IEntity<TId>
+        where TId : struct
     {
         public MappingProfile()
         {
-            CreateMap<TEntity, TViewModel>()
-                .ReverseMap();
         }
     }
 }

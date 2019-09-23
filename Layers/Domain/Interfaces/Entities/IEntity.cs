@@ -1,7 +1,8 @@
 ﻿namespace Layers.Domain.Interfaces.Entities
 {
-    public interface IEntity
+    public interface IEntity<TId>
+        where TId : struct
     {
-        int Id { get; set; }
+        TId Id { get; set; }
     }
 }

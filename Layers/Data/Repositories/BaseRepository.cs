@@ -8,72 +8,47 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Layers.Data.Repositories
 {
-    public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class, IEntity
+    public abstract class BaseRepository<TEntity, TId> : IBaseRepository<TEntity, TId>
+        where TEntity : class, IEntity<TId>
+        where TId : struct
     {
         protected DbContext _context;
 
-        public BaseRepository(DbContext context)
-        {
-            _context = context;
-        }
+        public BaseRepository(DbContext context) => _context = context;
 
-        public IQueryable<TEntity> GetAll()
-        {
-            return _context.Set<TEntity>();
-        }
+        public IQueryable<TEntity> GetAll() => _context.Set<TEntity>();
 
-        public virtual TEntity Get(int id)
-        {
-            return _context.Set<TEntity>().Find(id);
-        }
+        public virtual TEntity GetById(int id) => _context.Set<TEntity>().Find(id);
 
-        public virtual TEntity Add(TEntity t)
+        public virtual TEntity Add(TEntity entity)
         {
-            _context.Set<TEntity>().Add(t);
+            _context.Set<TEntity>().Add(entity);
             _context.SaveChanges();
-            return t;
+            return entity;
         }
 
         public virtual TEntity Find(Expression<Func<TEntity, bool>> match)
-        {
-            return _context.Set<TEntity>().SingleOrDefault(match);
-        }
+            => _context.Set<TEntity>().SingleOrDefault(match);
 
         public ICollection<TEntity> FindAll(Expression<Func<TEntity, bool>> match)
-        {
-            return _context.Set<TEntity>().Where(match).ToList();
-        }
+            => _context.Set<TEntity>().Where(match).ToList();
 
-        public virtual void Delete(TEntity entity)
+        public virtual void Remove(TEntity entity)
         {
             _context.Set<TEntity>().Remove(entity);
             _context.SaveChanges();
         }
 
-        public virtual TEntity Update(TEntity t)
+        public virtual TEntity Update(TEntity entity)
         {
-            try
-            {
-                _context.Set<TEntity>().Update(t);
-                _context.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-
-            }
-            return t;
-        }
-
-        public int Count()
-        {
-            return _context.Set<TEntity>().Count();
-        }
-
-        public virtual void Save()
-        {
-
+            _context.Set<TEntity>().Update(entity);
             _context.SaveChanges();
+            return entity;
         }
+
+        public int Count() => _context.Set<TEntity>().Count();
+
+        public virtual void Save() => _context.SaveChanges();
 
         public virtual IQueryable<TEntity> FindBy(Expression<Func<TEntity, bool>> predicate)
         {

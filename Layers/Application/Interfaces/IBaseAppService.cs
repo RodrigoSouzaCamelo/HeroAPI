@@ -6,18 +6,19 @@ using Layers.Domain.Interfaces.Entities;
 
 namespace Layers.Application.Interfaces
 {
-    public interface IBaseAppService<TEntity, TViewModel> 
-        where TEntity : IEntity
-        where TViewModel : IViewModel
+    public interface IBaseAppService<TViewModel, TEntity, TId> 
+        where TEntity : IEntity<TId>
+        where TViewModel : IViewModel<TId>
+        where TId : struct
     {
-        TViewModel Add(TViewModel t);
-        void Update(TViewModel t);
+        TViewModel GetAll(int id);
+        IEnumerable<TViewModel> GetAll();
+        TViewModel Add(TViewModel viewModel);
+        void Update(TViewModel viewModel);
+        void Remove(TViewModel entity);
         int Count();
-        void Delete(TViewModel entity);
         TViewModel Find(Expression<Func<TViewModel, bool>> match);
         ICollection<TViewModel> FindAll(Expression<Func<TViewModel, bool>> match);
         IQueryable<TViewModel> FindBy(Expression<Func<TViewModel, bool>> predicate);
-        TViewModel Get(int id);
-        IEnumerable<TViewModel> GetAll();
     }
 }

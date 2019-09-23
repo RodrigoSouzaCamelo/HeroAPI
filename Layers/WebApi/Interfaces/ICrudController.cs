@@ -4,18 +4,19 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Layers.WebApi.Interfaces
 {
-    public interface ICrudController<TEntity, TViewModel>
-        where TEntity : IEntity
-        where TViewModel : IViewModel
+    public interface ICrudController<TViewModel, TEntity, TId>
+        where TViewModel : IViewModel<TId>
+        where TEntity : IEntity<TId>
+        where TId : struct
     {
-        IActionResult Get();
+        IActionResult GetAll();
 
         IActionResult GetById(int id);
 
-        void Post(TViewModel t);
+        void Add(TViewModel t);
 
-        void Put(TViewModel value);
+        void Update(TViewModel value);
 
-        void Delete(TViewModel entity);
+        void Remove(TViewModel entity);
     }
 }

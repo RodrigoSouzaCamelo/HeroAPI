@@ -4,7 +4,7 @@ using Layers.Application.Mappings;
 
 namespace HeroAPI.Application.Mappings
 {
-    public class HeroMapping : MappingProfile<HeroEntity, HeroViewModel>
+    public class HeroMapping : MappingProfile<HeroViewModel, HeroEntity, int>
     {
     }
 }

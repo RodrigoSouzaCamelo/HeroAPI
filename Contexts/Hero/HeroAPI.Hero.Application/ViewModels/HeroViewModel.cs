@@ -3,7 +3,7 @@ using Layers.Application.ViewModels;
 
 namespace HeroAPI.Application.ViewModels
 {
-    public class HeroViewModel : ViewModel, IHeroViewModel
+    public class HeroViewModel : ViewModel<int>, IHeroViewModel
     {
         public string OwnName { get; set; }
         public string HeroName { get; set; }
